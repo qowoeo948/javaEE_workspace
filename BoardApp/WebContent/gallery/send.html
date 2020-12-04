@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<style type="text/css">
+*{margin-bottom:10px}
+
+</style>
+
+<script type="text/javascript">
+	function send(){
+		//서버에 제목 및 파일을 전송하자
+		//서버에 전송한다는 것은, 클라이언트로서, 요청한다는 뜻이고
+		//흔히 쓰는 요청밥법은 2가지가 있다. (물론 여러종류가 더 있음)
+		//업로드 시 Post,Get중 어떤 방법을 써야하는가?
+		//데이터량이 많기 때문에 post로 전송해야 한다.
+		//post로 전송하려면 입력양식의 범위를 설정하는 태그인 .form태그
+		//가 필요하다.
+		form1.action="/gallery/upload.jsp";
+		form1.method="post"; //바이너리 파일을 포함할 경우 반드시 post로
+		form1.submit(); //전송(요청)
+		
+	}
+</script>
+</head>
+<body>
+	<form name = "form1" enctype="multipart/form-data">
+		<input type="text" name="msg" placeholder="파일의 제목을 입력하세요"><br>
+		<input type="file" name="photo"><br>
+		<button onclick="send()">업로드</button>
+	</form>
+	
+</body>
+</html>

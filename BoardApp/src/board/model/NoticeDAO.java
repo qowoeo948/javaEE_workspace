@@ -44,6 +44,59 @@ public class NoticeDAO {
 		return result;
 
 	}
+	
+	public int update(Notice notice) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		con = dbManager.getConnection();
+
+		String sql  = "update notice set author=?, title=?, content=?";
+		sql+=" where notice_id=?";
+		
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, notice.getAuthor());
+			pstmt.setString(2, notice.getTitle());
+			pstmt.setString(3, notice.getContent());
+			pstmt.setInt(4, notice.getNotice_id());
+			  
+			result = pstmt.executeUpdate();
+			
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			dbManager.release(con,pstmt);
+		}
+		return result;
+		
+		
+	}
+	
+	public int delete(int notice_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql="delete from notice where notice_id=?";
+		int result = 0;
+
+		con = dbManager.getConnection();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, notice_id);
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			dbManager.release(con,pstmt);
+		}
+		return result;
+		
+	}
+	
 	//모든 레코드 가져오기
 	public ArrayList selectAll() {
 		Connection con =null;
@@ -119,6 +172,12 @@ public class NoticeDAO {
 				notice.setHit(rs.getInt("hit"));
 			}
 			
+			//조회수 증가
+			sql="update notice set hit=hit+1 where notice_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, notice_id);
+			pstmt.executeUpdate();
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

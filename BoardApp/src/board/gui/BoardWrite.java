@@ -54,6 +54,7 @@ public class BoardWrite extends Page{
 				JOptionPane.showMessageDialog(BoardWrite.this, "등록 실패");
 			}else {
 				JOptionPane.showMessageDialog(BoardWrite.this, "등록 성공");
+				boardMain.showPage(Pages.valueOf("BoardList").ordinal());
 			}
 		});
 		

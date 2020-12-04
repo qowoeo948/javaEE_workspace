@@ -1,3 +1,5 @@
+<%@page import="board.model.Notice"%>
+<%@page import="board.model.NoticeDAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page import="db.DBManager"%>
 <%@ page import="java.sql.*"%>
@@ -14,30 +16,22 @@
 	String title= request.getParameter("title");
 	String content= request.getParameter("content");
 	String notice_id= request.getParameter("notice_id");
-
-	String sql = "update notice set author=' "+author+" ', title=' "+title+" ', content=' "+content+" ' ";
-	sql+=" where notice_id="+notice_id;
-
-	out.print("수정에 사용할 sql문은: "+sql);
-
-	DBManager dbManager = new DBManager();
-
-	Connection con = null;
-	PreparedStatement pstmt=null;
-
-	con = dbManager.getConnection();
-
-	pstmt = con.prepareStatement(sql);	//쿼리준비
-
-	int result = pstmt.executeUpdate();
-
+	
+	NoticeDAO noticeDAO = new NoticeDAO();
+	
+	Notice notice = new Notice();
+	notice.setAuthor(author);
+	notice.setTitle(title);
+	notice.setContent(content);
+	notice.setNotice_id(Integer.parseInt(notice_id));
+	
+	int result=noticeDAO.update(notice);
+	
 	if(result==0){
 		out.print(getMsgBack("수정실패"));
 	
 	}else{
 		out.print(getMsgURL("수정성공","/board/detail.jsp?notice_id="+notice_id));
 	}
-
-		dbManager.release(con,pstmt);
 
 %>

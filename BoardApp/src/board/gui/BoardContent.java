@@ -3,11 +3,13 @@ package board.gui;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import board.model.Notice;
+import board.model.NoticeDAO;
 
 public class BoardContent extends Page{
 	JTextField t_author;
@@ -17,7 +19,8 @@ public class BoardContent extends Page{
 	JButton bt_list;
 	JButton bt_edit;
 	JButton bt_del;
-	Notice notice;
+	Notice notice ;
+	NoticeDAO noticeDAO;
 	
 	public BoardContent(BoardMain boardMain) {
 		super(boardMain);
@@ -29,6 +32,8 @@ public class BoardContent extends Page{
 		bt_list = new JButton("목록으로");
 		bt_edit = new JButton("수정");
 		bt_del = new JButton("삭제");
+		noticeDAO = new NoticeDAO();
+		
 		
 		//스타일
 		t_author.setPreferredSize(new Dimension((int)this.getPreferredSize().getWidth()-10,35));
@@ -43,6 +48,53 @@ public class BoardContent extends Page{
 		add(bt_edit);
 		add(bt_del);
 		
+		bt_list.addActionListener((e)->{
+			boardMain.showPage(Pages.valueOf("BoardList").ordinal());
+		});
+		
+		bt_edit.addActionListener((e)->{
+			if(JOptionPane.showConfirmDialog(BoardContent.this, "수정하실래요?")==JOptionPane.OK_OPTION)
+			edit();
+		});
+		
+	    
+	      bt_del.addActionListener((e)->{
+	    	  if(JOptionPane.showConfirmDialog(BoardContent.this, "삭제하실래요?")==JOptionPane.OK_OPTION)
+	    		  del();
+	      });
+
+	}
+	
+
+	public void edit() {
+		notice.setAuthor(t_author.getText());
+		notice.setTitle(t_title.getText());
+		notice.setContent(area.getText());
+		
+		int result = noticeDAO.update(notice);
+		
+		if(result==0) {
+			JOptionPane.showMessageDialog(BoardContent.this, "수정 실패");
+		}else {
+			JOptionPane.showMessageDialog(BoardContent.this, "수정 성공");
+			 boardMain.showPage(Pages.valueOf("BoardList").ordinal());
+		}
+		
+	}
+	
+	public void del() {
+		int result = noticeDAO.delete(notice.getNotice_id());
+	         
+	    if(result == 0) {
+	        JOptionPane.showMessageDialog(BoardContent.this, "삭제 실패");
+	     }else {
+	        JOptionPane.showMessageDialog(BoardContent.this, "삭제 성공");
+	        BoardList boardList = (BoardList)boardMain.pageList[Pages.valueOf("BoardList").ordinal()];
+	        boardList.getList();//데이터가져오기
+	        boardList.table.updateUI();	//화면갱신
+	        
+	        boardMain.showPage(Pages.valueOf("BoardList").ordinal());
+	     }
 	}
 	
 	//컴포넌트에 데이터 채워넣기 
