@@ -1,19 +1,19 @@
-<%@page import="board.model.ImageBoard"%>
-<%@page import="board.model.ImageBoardDAO"%>
+<%@page import="board.model.QnA"%>
+<%@page import="board.model.QnADAO"%>
 <%@page import="board.model.Notice"%>
 <%@page import="board.model.NoticeDAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page import="java.sql.*"%>
 
 <%
-	String board_id = request.getParameter("board_id");
+	String qna_id = request.getParameter("qna_id");
 
-	String sql="select *from notice where board_id="+board_id;
+	String sql="select *from qna where qna_id="+qna_id;
 	
 	out.print("실행될 예정 SQL은 "+sql);
 
-	ImageBoardDAO dao = new ImageBoardDAO();
-	ImageBoard board = dao.select(Integer.parseInt(board_id));
+	QnADAO qnaDAO = new QnADAO();
+	QnA qna = qnaDAO.select(Integer.parseInt(qna_id));
 
 %>
 <!DOCTYPE html>
@@ -73,15 +73,14 @@ textarea{
 
 	$(function(){
 		$($("input[type='button']")[0]).click(function(){	//목록으로
-		location.href="/imageboard/list.jsp";
+		location.href="/qna/list.jsp";
 		});
 	
 		$($("input[type='button']")[1]).click(function(){	//수정요청
 			if(confirm("수정하시겠어요?")){
 			$("form").attr({
 				method:"post",
-				enctype:"multipart/form-data",
-				action:"/imageboard/edit.jsp"
+				action:"/board/edit.jsp"
 			});
 			$("form").submit(); //전송행위
 			}	
@@ -93,7 +92,7 @@ textarea{
 			if(confirm("삭제하시겠습니까?")){
 			$("form").attr({
 				method:"post",
-				action:"/imageboard/delete.jsp"
+				action:"/board/delete.jsp"
 			});
 			$("form").submit(); //전송행위
 			}
@@ -111,25 +110,17 @@ textarea{
 
 <div class="container">
   <form>
-	 <input  type="hidden" name="board_id" value="<%=board.getBoard_id()%>">
+	 <input  type="hidden" name="qna_id" value="<%=qna.getQna_id()%>">
 
 	<label for="fname">First Name</label>
-    <input type="text" id="fname" name="author" value="<%=board.getAuthor()%>">
+    <input type="text" id="fname" name="writer" value="<%=qna.getWriter()%>">
 
     <label for="lname">title</label>
-    <input type="text" id="lname" name="title" value="<%=board.getTitle()%>">
+    <input type="text" id="lname" name="title" value="<%=qna.getTitle()%>">
 
 	<label for="subject">Content</label>
-    <textarea id="subject" name="content" placeholder="Write something.." style="height:200px"><%=board.getContent()%></textarea>
+    <textarea id="subject" name="content" placeholder="Write something.." style="height:200px"><%=qna.getContent()%></textarea>
    
-   	<img src="/data/<%=board.getFilename() %>" width="100px">
-   <input  type="hidden" name="filename" value="<%=board.getFilename()%>">
-   
-   <!-- 만일이미지를 선택하면 이미지를 교체해야 한다, 교체하지 않으면 db에 기존 파일명 유지-->
-   <input type="file" name="photo">
-   
-	<p>   
-	
 	<input type="button" value="목록으로">
 	<input type="button" value="수정하기">
 	<input type="button" value="삭제하기">

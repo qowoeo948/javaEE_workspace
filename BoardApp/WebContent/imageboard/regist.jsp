@@ -20,6 +20,7 @@
 	DiskFileItemFactory itemFactory=new DiskFileItemFactory();
 	itemFactory.setRepository(new File(saveDir));
 	itemFactory.setSizeThreshold(maxSize);
+	itemFactory.setDefaultCharset("utf-8");
 	
 	ServletFileUpload upload=new ServletFileUpload(itemFactory);
 	
@@ -28,18 +29,18 @@
 	List<FileItem> items=upload.parseRequest(request);
 	
 	ImageBoard board = new ImageBoard();	//이떄는 Empty상태 vo생성
-
+	
 	for(FileItem item : items){
-		if(item.isFormField()){ //textfield 라면...db에 넣어야지
+		if(item.isFormField()){ //textfield 라면...db에 넣어야지					
 			if(item.getFieldName().equals("author")){ //필드명이 author라면~
-			board.setAuthor(item.getString());
-				
+				board.setAuthor(item.getString());
+					
 			}else if(item.getFieldName().equals("title")){
-			board.setTitle(item.getString());
-				
+				board.setTitle(item.getString());
+					
 			}else if(item.getFieldName().equals("content")){
-			board.setContent(item.getString());
-				
+				board.setContent(item.getString());
+					
 			}
 			
 		}else{ // textfield가 아니라면..업로드 처리
