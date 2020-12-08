@@ -60,7 +60,7 @@ textarea{
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 <script>
 /*
 	GET : Http프로토콜에서 헤더 정보에 데이터를 실어 나른다. 아무래도 헤더이다보니, 
@@ -72,6 +72,8 @@ textarea{
 */
 
 	$(function(){
+		CKEDITOR.replace( "subject" ); 
+		
 		$($("input[type='button']")[0]).click(function(){	//목록으로
 		location.href="/qna/list.jsp";
 		});
@@ -80,7 +82,7 @@ textarea{
 			if(confirm("수정하시겠어요?")){
 			$("form").attr({
 				method:"post",
-				action:"/board/edit.jsp"
+				action:"/qna/edit.jsp"
 			});
 			$("form").submit(); //전송행위
 			}	
@@ -92,11 +94,22 @@ textarea{
 			if(confirm("삭제하시겠습니까?")){
 			$("form").attr({
 				method:"post",
-				action:"/board/delete.jsp"
+				action:"/qna/delete.jsp"
 			});
 			$("form").submit(); //전송행위
 			}
-	});
+		});
+		
+		$($("input[type='button']")[3]).click(function(){	//삭제요청
+			
+			$("form").attr({
+				method:"post",
+				action:"/qna/reply_form.jsp"
+			});
+			$("form").submit(); //전송행위
+			
+		});
+		
 
 	});
 
@@ -111,6 +124,9 @@ textarea{
 <div class="container">
   <form>
 	 <input  type="hidden" name="qna_id" value="<%=qna.getQna_id()%>">
+	 <input  type="hidden" name="team" value="<%=qna.getTeam()%>">
+	 <input  type="hidden" name="rank" value="<%=qna.getRank()%>">
+	 <input  type="hidden" name="depth" value="<%=qna.getDepth()%>">
 
 	<label for="fname">First Name</label>
     <input type="text" id="fname" name="writer" value="<%=qna.getWriter()%>">
@@ -124,6 +140,7 @@ textarea{
 	<input type="button" value="목록으로">
 	<input type="button" value="수정하기">
 	<input type="button" value="삭제하기">
+	<input type="button" value="답글달기">
 
   </form>
 </div>

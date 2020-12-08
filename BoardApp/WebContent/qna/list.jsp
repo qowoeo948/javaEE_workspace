@@ -36,6 +36,9 @@ th, td {
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+a{
+	text-decoration:none;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -66,11 +69,14 @@ tr:nth-child(even) {
   <tr>
     <td>26</td>
     <td>
+    <%if(qna.getDepth()>0){ //depth가 0보다 큰 경우 답변으로 판단%>
+    	<img src="/images/reply.png" style="margin-left:<%=30*qna.getDepth()%>px">
+		<%} %>
 		<a href="/qna/detail.jsp?qna_id=<%=qna.getQna_id()%>"><%=qna.getTitle()%></a>
 
 	</td>
     <td><%= qna.getWriter()%></td>
-	<td><%=qna.getRegdate()%></td>
+	<td><%=qna.getRegdate().substring(0,10)%></td>
 	<td><%=qna.getHit()%></td>
   </tr>
   	<%}%>

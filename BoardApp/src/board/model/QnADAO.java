@@ -42,12 +42,56 @@ public class QnADAO {
 		return result;
 		
 	}
+	
+	//트랜잭션이란?
+	//세부업무가 모두 성공해야, 전체를 성공으로 간주하는 논리적 업무 수행 단위
+	
 	//답변글
-	public int reply() {
+	public int reply(QnA qna) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
 		int result=0;
+		String sql="update qna set rank=rank+1 where team=? and rank > ?";
 		
-		return result;
-		
+		con = dbManager.getConnection();
+		try {											//원래는 자동 커밋 true로 되어있음
+			con.setAutoCommit(false); //자동으로 커밋하지마!!(SQLplus처럼 내가 결정할게!!)
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, qna.getTeam());
+			pstmt.setInt(2, qna.getRank());
+			
+			result = pstmt.executeUpdate();
+
+			sql="insert into qna(writer,title,content,team,rank,depth) values(?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, qna.getWriter());
+			pstmt.setString(2, qna.getTitle());
+			pstmt.setString(3, qna.getContent());
+			pstmt.setInt(4, qna.getTeam());
+			pstmt.setInt(5, qna.getRank()+1);	//내본글 다음에 위치할 것이므로 +1
+			pstmt.setInt(6, qna.getDepth()+1);	//내본글에 대한 답변이므로 +1
+			
+			result = pstmt.executeUpdate();
+			
+			con.commit();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				con.rollback();//두 쿼리문 중 에러가 하나라도 발생하면, 차라리 처음부터 없었던 일 로 하자
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				con.setAutoCommit(true); //원상복귀
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			dbManager.release(con,pstmt);
+		}
+			return result;
 	}
 	
 	
@@ -79,6 +123,8 @@ public class QnADAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			dbManager.release(con,pstmt,rs);
 		}
 		
 		return list;
@@ -112,6 +158,8 @@ public class QnADAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			dbManager.release(con,pstmt,rs);
 		}
 		
 		return qna;
@@ -119,15 +167,49 @@ public class QnADAO {
 	}
 	
 	//update
-	public int update() {
+	public int update(QnA qna) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = "update qna set writer=?, title=?, content=? where qna_id=?";
 		int result=0;
+		con = dbManager.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, qna.getWriter());
+			pstmt.setString(2, qna.getTitle());
+			pstmt.setString(3, qna.getContent());
+			pstmt.setInt(4, qna.getQna_id());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			dbManager.release(con,pstmt);
+		}
+		
 		
 		return result;
 		
 	}
 	//delete
-	public int delete() {
+	public int delete(int qna_id) {
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		String sql = "delete from qna where qna_id=?";
 		int result=0;
+		
+		con = dbManager.getConnection();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, qna_id);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			dbManager.release(con,pstmt);
+		}
 		
 		return result;
 		

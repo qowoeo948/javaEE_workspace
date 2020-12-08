@@ -10,6 +10,7 @@
 <%
 	ImageBoardDAO imageBoardDAO= new ImageBoardDAO();
 	ArrayList<ImageBoard> list = imageBoardDAO.selectAll();
+
 			
 %>
 
