@@ -1,19 +1,14 @@
-<%@page import="java.util.List"%>
-<%@page import="board.model.QnA"%>
-<%@page import="board.model.QnADAO"%>
-<%@page import="board.model.Notice"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="board.model.NoticeDAO"%>
+<%@page import="board.model.QnA"%>
+<%@page import="java.util.List"%>
+<%@page import="board.model.QnADAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
-<%@ page import="db.DBManager"%>
-<%@ page import="java.sql.Connection"%>
-<%@ page import="java.sql.PreparedStatement"%>
-<%@ page import="java.sql.ResultSet"%>
-
 <%
-	QnADAO qnaDAO = new QnADAO();
-	List<QnA> list = qnaDAO.selectAll();	
-	
+	//DB연동
+	QnADAO dao = new QnADAO();
+	List<QnA> list = dao.selectAll();
+
+
 	int totalRecord=list.size(); //총 레코드 수, 실제 DB에 있는 데이터 수를 대입하면 된다!
 	int pageSize=10; //한 페이지당 보여질 레코드 수
 	int totalPage=((int)Math.ceil((float)totalRecord/pageSize)); //총페이지 수 
@@ -38,11 +33,20 @@
 	int curPos =(currentPage-1) * pageSize ; //페이지당 List에서의 시작 index
 	
 %>
+<%="totalRecord: "+totalRecord+"<br>" %>
+<%="pageSize: "+pageSize+"<br>" %>
+<%="totalPage: "+totalPage+"<br>" %>
+<%="blockSize: "+blockSize+"<br>" %>
+<%="currentPage: "+currentPage+"<br>" %>
+<%="firstPage: "+firstPage+"<br>" %>
+<%="lastPage: "+lastPage+"<br>" %>
+<%="num: "+num+"<br>" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <style>
 table {
   border-collapse: collapse;
@@ -62,26 +66,17 @@ tr:nth-child(even) {
 a{
 	text-decoration:none;
 }
+
 .pageNum{
 	font-size:14pt;
 	color:red;
 	font-weight:bold;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-	$(function(){
-		$("button").on("click",function(){
-			//자바스크립트에서 링크 구현?
-			location.href="/qna/regist_form.jsp";
-		});
-	});//onload
-	
-
 </script>
 </head>
 <body>
-
 <table>
   <tr>
     <th>No</th>
@@ -103,8 +98,7 @@ a{
     <%if(qna.getDepth()>0){ %>
     <img src="/images/reply.png" style="margin-left:<%=10*qna.getDepth()%>">
     <%} %>
-    	<a href="/qna/detail.jsp?qna_id=<%=qna.getQna_id()%>"><%=qna.getTitle()%></a>
-   </td>
+    <%=qna.getTitle() %></td>
     <td><%=qna.getWriter() %></td>
 	<td><%=qna.getRegdate().substring(0,10) %></td>
 	<td><%=qna.getHit() %></td>	
