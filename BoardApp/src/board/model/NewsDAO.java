@@ -77,6 +77,13 @@ public class NewsDAO {
 				news.setRegdate(rs.getString("regdate"));
 				news.setHit(rs.getInt("hit"));
 			}
+			
+			//조회수 증가
+			sql="update news set hit=hit+1 where news_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, news_id);
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
