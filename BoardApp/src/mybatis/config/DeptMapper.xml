@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.config.Dept">
+	<!--
+	개발자는 mybatis를 이용할 경우, 자바코드에서 쿼리문을 작성하지 않으며,
+	수많은 jdbc관련 코드 또한 작성할 필요가 없고, 오직 쿼리문에만 집중하면 된다.
+	-->
+	
+	<!--모든글 가져오기-->
+	<select id="selectAll" resultType="emp.model.Dept">
+		select *from dept order by deptno asc
+	</select>
+	
+	<!--한 건 가져오기-->
+	<select id="select" parameterType="int" resultType="emp.model.Dept">
+		select *from dept where deptno=#{deptno}
+	</select>
+	
+	<!-- 글 등록하기 (insert) -->
+	<insert id="insert" parameterType="emp.model.Dept">
+		insert into dept(dname,loc) values(#{dname},#{loc}) 
+	</insert>
+	
+	<!--한 건 수정하기-->
+	<update id="update" parameterType="emp.model.Dept">
+		update dept set dname=#{dname}, loc=#{loc} where deptno=#{deptno}
+	</update>
+
+	<!--한 건 삭제하기-->	
+	<delete id="delete" parameterType="int">
+		delete from dept where deptno=#{deptno}
+	</delete>
+	
+	
+</mapper>

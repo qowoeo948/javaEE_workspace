@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function loadDoc() {
+		var xhttp = new XMLHttpRequest(); //비동기 통신 객체 (심부름꾼 꼬맹이)
+		/*
+		0: request not initialized	:요청 준비도 안된상태
+		1: server connection established: 서버와 네트워크 연결이 된 상태
+		2: request received	: 요청이 서버에 도달함
+		3: processing request	: 서버가 요청을 처리중...
+		4: request finished and response is ready		:요청처리가 완료, 응답을 받는 단계
+		
+		
+		 */
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) { //성공은 200, 에러 500, 
+				document.getElementById("box").innerHTML = this.responseText;	//응답테스트
+			}
+		};
+		xhttp.open("GET", "/async/test.jsp", true);
+		xhttp.send();
+	}
+	
+	//동기로 가져오기
+	function loadSync(){
+		//기존 화면은 사라지고, 요청에 의해 다운로드 받은 컨텐츠로 대체되어 버려서,
+		//화면이 깜빡거리는 현상이 발생함 (즉 새로운 컨텐츠가 전체화면을 대체함 )
+		//일반인들: 이동한다~~
+		//개발자들: 요청한다~~
+		location.href="/async/test.jsp"; 	//get방식의 요청
+		
+	}
+	//비동기로 가져오기
+	function loadAsync(){
+		loadDoc();
+		
+	}
+	
+</script>
+</head>
+<body>
+	<button onClick="loadSync()">동기(Sync)로 가져오기</button>
+	<button onClick="loadAsync()">비동기(Async)로 가져오기</button>
+	<div id="box">기존텍스트</div>
+
+</body>
+</html>
