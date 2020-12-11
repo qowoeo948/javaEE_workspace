@@ -21,7 +21,7 @@
 	if(new CommentsDAO().insert(comments)==0){
 			out.print(getMsgBack("댓글 등록 실패"));
 	}else{
-		out.print(getMsgURL("댕글 등록 성공", "detail.jsp?news_id="+comments.getNews_id()));
+		out.print(getMsgURL("댓글 등록 성공", "detail.jsp?news_id="+comments.getNews_id()));
 	}
 
 %>

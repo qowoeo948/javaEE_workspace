@@ -57,6 +57,9 @@ p{
 <script>
 $(function(){
 	$($("button")[0]).click(function(){ //글수정
+		if(confirm("수정하시겠습니까?")){
+		edit();
+		}
 	});
 	$($("button")[1]).click(function(){//삭제
 		if(confirm("삭제하시겠습니까?")){
@@ -91,13 +94,7 @@ function asyncList(){
 
 function asyncReply(){
 	var xhttp = new XMLHttpRequest(); //비동기 통신 객체
-	/*
-	0: request not initialized : 요청준비도 않된상태
-	1: server connection established : 서버와 네트워크 연결이 된 상태 
-	2: request received : 요청이 서버에 도달함
-	3: processing request : 서버가 요청을 처리중...
-	4: request finished and response is ready : 요청처리가 완료, 응답을 받는 단계
-	*/
+
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			//alert(this.responseText);
@@ -118,7 +115,7 @@ function asyncReply(){
 
 
 function getList(data){
-	//alert(data); //서버로부터 전송받은 응답 데이터를 출력!!
+	alert(data); //서버로부터 전송받은 응답 데이터를 출력!!
 	//json을 파싱하자!!!
 	//동적으로 태그를 생성하자!!
 	var listBox = document.getElementById("listBox");
@@ -172,6 +169,16 @@ function delComments(comments_id){
 		xhttp.send();	
 	}
 }
+
+function edit(){
+	$("form").attr({
+		method:"post", 
+		action:"edit.jsp"
+	});					
+	$("form").submit();
+	
+}
+
 function del(){
 	//자식 코멘트가 존재한다면, 업데이트!!!
 	<%if(list.size() >0){%>
@@ -238,7 +245,9 @@ function reply(){
 			</tr>
 			<!-- 댓글 리스트 영역 -->
 			<tr>
-				<td id="listBox"></td>
+				<td id="listBox">
+				
+				</td>
 			</tr>			
 		</table>
 	</form>

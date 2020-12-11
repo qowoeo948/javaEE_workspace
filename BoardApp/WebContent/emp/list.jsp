@@ -21,9 +21,9 @@
 <body>
 	<%for(int i=0;i<list.size();i++){ %>
 	<%Dept dept = list.get(i); %>
-	부서번호<%=dept.getDeptno() %>
-	,부서명<%=dept.getDname() %>
-	,위치<%=dept.getLoc() %><br>
+	부서번호: <%=dept.getDeptno() %>
+	,부서명: <%=dept.getDname() %>
+	,위치: <%=dept.getLoc() %><br>
 
 	<%} %>
 </body>

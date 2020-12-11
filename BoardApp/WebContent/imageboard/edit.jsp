@@ -1,6 +1,6 @@
 <%@page import="board.model.ImageBoard"%>
 <%@page import="board.model.ImageBoardDAO"%>
-<%@page import="common.FileManager"%>
+<%@page import="common.file.FileManager"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page import="java.util.List"%>
 <%@page import="java.io.File"%>

@@ -1,6 +1,6 @@
-<%@page import="board.model.ImageBoardDAO"%>
-<%@page import="board.model.ImageBoard"%>
-<%@page import="java.util.ArrayList"%>
+<%@ page import="board.model.ImageBoardDAO"%>
+<%@ page import="board.model.ImageBoard"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page import="db.DBManager"%>
 <%@ page import="java.sql.Connection"%>
