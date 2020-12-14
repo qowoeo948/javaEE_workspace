@@ -90,11 +90,8 @@ function asyncList(){
 	xhttp.open("get", "/news/asynclist.jsp?news_id=<%=news_id%>", true);
 	xhttp.send();
 }
-
-
 function asyncReply(){
 	var xhttp = new XMLHttpRequest(); //비동기 통신 객체
-
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			//alert(this.responseText);
@@ -112,8 +109,6 @@ function asyncReply(){
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send(params);	
 }
-
-
 function getList(data){
 	alert(data); //서버로부터 전송받은 응답 데이터를 출력!!
 	//json을 파싱하자!!!
@@ -169,7 +164,6 @@ function delComments(comments_id){
 		xhttp.send();	
 	}
 }
-
 function edit(){
 	$("form").attr({
 		method:"post", 
@@ -178,7 +172,6 @@ function edit(){
 	$("form").submit();
 	
 }
-
 function del(){
 	//자식 코멘트가 존재한다면, 업데이트!!!
 	<%if(list.size() >0){%>
@@ -253,8 +246,3 @@ function reply(){
 	</form>
 </body>
 </html>
-
-
-
-
-

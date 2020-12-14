@@ -5,7 +5,6 @@
 <%
 	NewsDAO dao = new NewsDAO();
 	List<News> list = dao.selectAll();
-
 	int totalRecord=list.size();	//총 레코드 수
 	int pageSize=10; //페이지당 보여질 레코드수(개발자가 임의로 지정 가능)
 	int totalPage=(int)Math.ceil((float)totalRecord/pageSize);	//총 페이지 수

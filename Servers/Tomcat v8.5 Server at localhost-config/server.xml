@@ -6,9 +6,7 @@
   The ASF licenses this file to You under the Apache License, Version 2.0
   (the "License"); you may not use this file except in compliance with
   the License.  You may obtain a copy of the License at
-
       http://www.apache.org/licenses/LICENSE-2.0
-
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,16 +36,7 @@
     -->
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
   
-	 <Resource name="jdbc/myoracle"
-	auth="Container"
-	type="javax.sql.DataSource"
-	driverClassName="oracle.jdbc.driver.OracleDriver"
-	url="jdbc:oracle:thin:@localhost:1521:XE"
-	username="lastuser"
-	password="lastuser"
-	maxActive="20"
-	maxIdle="10"
-	maxWait="3000"/>
+	 <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/myoracle" password="lastuser" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="lastuser"/>
 	  
   </GlobalNamingResources>
 
@@ -165,7 +154,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="MySitee" path="/" reloadable="true" source="org.eclipse.jst.jee.server:MySitee"/><Context docBase="BoardApp" path="/BoardApp" reloadable="true" source="org.eclipse.jst.jee.server:BoardApp"/></Host>
+      <Context docBase="BoardApp" path="/BoardApp" reloadable="true" source="org.eclipse.jst.jee.server:BoardApp"/><Context docBase="MySite" path="/" reloadable="true" source="org.eclipse.jst.jee.server:MySite"/></Host>
     </Engine>
   </Service>
 </Server>
