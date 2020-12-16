@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mybatis.mappers.BoardMapper">
+<mapper namespace="Board">
 
 	<!--이 xml파일에는 기존 DAO가 담당하는 테이블에 대한 CRUD쿼리를 작성한다 -->
 	
-	<insert id="insert" parameterType="board.model.Board">
+	<insert id="insert" parameterType="Board">
 		insert into board(board_id,title,writer,content,filename)
 		values(seq_board.nextval,#{title},#{writer},#{content},#{filename})
 	</insert>
 
-	<select id="selectAll" resultType="board.model.Board">
+	<select id="selectAll" resultType="Board">
 		select *from board order by board_id desc
 	</select>
 	
-	<select id="select" parameterType="int" resultType="board.model.Board">
+	<select id="select" parameterType="int" resultType="Board">
 		select *from board where board_id=#{board_id}
 	</select>
 	
-	<update id="update" parameterType="board.model.Board">
+	<update id="update" parameterType="Board">
 		update board set title=#{title}, writer=#{writer},content=#{content},filename=#{filename} 
 		where board_id=#{board_id}
 	</update>

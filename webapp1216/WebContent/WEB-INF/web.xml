@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>webapp1216</display-name>
+
+	<resource-ref>
+		<res-ref-name>jdbc/mysql</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+	<!-- 서블릿과 url매핑 
+		서블릿은 클래스 이므로, 브라우저 주소로 직접 실행될 수 없고, 간접적인 매핑에 의해서 실행될 수 있다.
+		DD는 톰켓서버를 가동할 때 읽혀지므로, 만일 DD를 변경한다면 톰캣을 다시 가동해야한다.
+	 -->
+	 <servlet>
+	 	<servlet-name>registServlet</servlet-name>
+	 	<servlet-class>com.webapp1216.board.controller.RegistServlet</servlet-class>
+	 </servlet>
+	 <servlet-mapping>
+	 	<servlet-name>registServlet</servlet-name>
+	 	<url-pattern>/board/regist</url-pattern>
+	 </servlet-mapping>
+	 
+	 <servlet>
+	 	<servlet-name>listServlet</servlet-name>
+	 	<servlet-class>com.webapp1216.board.controller.ListServlet</servlet-class>
+	 </servlet>
+	 <servlet-mapping>
+	 	<servlet-name>listServlet</servlet-name>
+	 	<url-pattern>/board/list</url-pattern>
+	 </servlet-mapping>
+	 
+	 <servlet>
+	 	<servlet-name>detailServlet</servlet-name>
+	 	<servlet-class>com.webapp1216.board.controller.DetailServlet</servlet-class>
+	 </servlet>
+	 <servlet-mapping>
+	 	<servlet-name>detailServlet</servlet-name>
+	 	<url-pattern>/board/detail</url-pattern>
+	 </servlet-mapping>
+	 
+	 <servlet>
+	 	<servlet-name>deleteServlet</servlet-name>
+	 	<servlet-class>com.webapp1216.board.controller.DeleteServlet</servlet-class>
+	 </servlet>
+	 <servlet-mapping>
+	 	<servlet-name>deleteServlet</servlet-name>
+	 	<url-pattern>/board/delete</url-pattern>
+	 </servlet-mapping>
+	 
+	 <servlet>
+	 	<servlet-name>editServlet</servlet-name>
+	 	<servlet-class>com.webapp1216.board.controller.EditServlet</servlet-class>
+	 </servlet>
+	 <servlet-mapping>
+	 	<servlet-name>editServlet</servlet-name>
+	 	<url-pattern>/board/edit</url-pattern>
+	 </servlet-mapping>
+	 
+
+ 
+</web-app>

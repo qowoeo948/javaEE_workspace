@@ -16,7 +16,7 @@ public class MybatisBoardDAO {
 	public int insert(Board board) {
 		int result=0;
 		SqlSession sqlSession = configManager.getSqlSession();
-		result = sqlSession.insert("mybatis.mappers.BoardMapper.insert",board);
+		result = sqlSession.insert("Board.insert",board);
 		sqlSession.commit();
 		configManager.close(sqlSession);
 		return result;
@@ -25,7 +25,7 @@ public class MybatisBoardDAO {
 	public List selectAll() {
 		List list = null;
 		SqlSession sqlSession = configManager.getSqlSession();
-		list = sqlSession.selectList("mybatis.mappers.BoardMapper.selectAll");
+		list = sqlSession.selectList("Board.selectAll");
 		configManager.close(sqlSession);
 		return list;
 	}
@@ -34,7 +34,7 @@ public class MybatisBoardDAO {
 	public Board select(int board_id) {
 		Board board = null;
 		SqlSession sqlSession = configManager.getSqlSession();
-		board=sqlSession.selectOne("mybatis.mappers.BoardMapper.select",board_id);
+		board=sqlSession.selectOne("Board.select",board_id);
 		configManager.close(sqlSession);
 		return board;
 	}
@@ -42,7 +42,7 @@ public class MybatisBoardDAO {
 	public int update(Board board) {
 		int result=0;
 		SqlSession sqlSession = configManager.getSqlSession();
-		result = sqlSession.update("mybatis.mappers.BoardMapper.update", board);
+		result = sqlSession.update("Board.update", board);
 		sqlSession.commit();
 		configManager.close(sqlSession);
 		return result;
@@ -51,7 +51,7 @@ public class MybatisBoardDAO {
 	public int delete(int board_id) {
 		int result=0;
 		SqlSession sqlSession = configManager.getSqlSession();
-		result = sqlSession.delete("mybatis.mappers.BoardMapper.delete", board_id);
+		result = sqlSession.delete("Board.delete", board_id);
 		sqlSession.commit();
 		configManager.close(sqlSession);
 		return result;

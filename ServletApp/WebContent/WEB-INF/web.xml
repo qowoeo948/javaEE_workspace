@@ -2,10 +2,11 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>ServletApp</display-name>
 
+<!--                                                     
 	<servlet>
 		<servlet-name>helloServlet</servlet-name>
 		<servlet-class>com.greeting.HelloServlet</servlet-class>
-		<init-param>
+		<init-param>	
 			<param-name>msg</param-name>
 			<param-value>this is my message</param-value>
 		</init-param>
@@ -15,8 +16,9 @@
 		<servlet-name>helloServlet</servlet-name>
 		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
+        -->
 	
-	
+<!--                                                             -->	
 	<servlet>
 		<servlet-name>registServlet</servlet-name>
 		<servlet-class>board.controller.RegistServlet</servlet-class>
@@ -27,8 +29,7 @@
 		<url-pattern>/board/regist</url-pattern>
 	</servlet-mapping>
 	
-	
-	
+<!--                                                             -->	
 		<resource-ref>
 		<res-ref-name>jdbc/myoracle</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
