@@ -83,7 +83,7 @@ function del(){
 
 <div class="container">
   <form>
-  	<input type="hidden" name="board_id" value="<%=notice.getNotice_id()%>">
+  	<input type="hidden" name="notice_id" value="<%=notice.getNotice_id()%>">
     
     <input type="text" name="title" value=<%=notice.getTitle() %>>
     <input type="text" name="writer" value=<%=notice.getWriter() %>>

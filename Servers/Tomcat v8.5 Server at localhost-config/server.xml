@@ -38,16 +38,7 @@
   
 	 <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/myoracle" password="lastuser" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="lastuser"/>
 	  
-	  <Resource name="jdbc/mysql"
-		auth="Container"
-		type="javax.sql.DataSource"
-		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost/db1216"
-		username="root"
-		password="1234"
-		maxActive="20"
-		maxIdle="10"
-		maxWait="3000"/>
+	  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/mysql" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost/db1216" username="root"/>
 		
   </GlobalNamingResources>
 
@@ -165,7 +156,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="BoardApp" path="/BoardApp" reloadable="true" source="org.eclipse.jst.jee.server:BoardApp"/><Context docBase="MySite" path="/MySite" reloadable="true" source="org.eclipse.jst.jee.server:MySite"/><Context docBase="ServletApp" path="/ServletApp" reloadable="true" source="org.eclipse.jst.jee.server:ServletApp"/><Context docBase="webapp1216" path="/" reloadable="true" source="org.eclipse.jst.jee.server:webapp1216"/></Host>
+      <Context docBase="webapp1216" path="/webapp1216" reloadable="true" source="org.eclipse.jst.jee.server:webapp1216"/><Context docBase="MVCFramework" path="/" reloadable="true" source="org.eclipse.jst.jee.server:MVCFramework"/></Host>
     </Engine>
   </Service>
 </Server>

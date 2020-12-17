@@ -1,6 +1,7 @@
 package com.webapp1216.board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +25,7 @@ public class DeleteServlet extends HttpServlet{
 		//alert는 디자인..
 		HttpSession session = request.getSession();
 		//result=0; result==0일때 나오는지 실험용
+		
 		
 		if(result==0) {
 			//실패페이지를 보여준다. 결국 에러에 대한 안내를 보여주는 페이지를 별도로 두고 그 페이지를 보여준다
