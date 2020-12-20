@@ -15,5 +15,12 @@
 		insert into notice(title,writer,content) values(#{title},#{writer},#{content})
 	</insert>
 
+	<update id="update" parameterType="Notice">
+		update notice set title=#{title}, writer=#{writer}, content=#{content} where notice_id=#{notice_id}
+	</update> 
+	
+	<delete id="delete" parameterType="int">
+		delete from notice where notice_id=#{notice_id}
+	</delete>
 
 </mapper>

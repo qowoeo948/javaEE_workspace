@@ -63,7 +63,7 @@ input[type=button]:hover {
 	
 function edit(){
 		$("form").attr({
-			action:"/board/edit",
+			action:"/notice/edit.do",
 			method:"post"
 		});
 		$("form").submit();
@@ -72,7 +72,11 @@ function edit(){
 
 function del(){
 		
-	location.href="/board/delete?notice_id=<%=notice.getNotice_id()%>";
+	$("form").attr({
+		action:"/notice/delete.do",
+		method:"post"
+	});
+	$("form").submit();
 	
 }
 </script>
@@ -92,7 +96,7 @@ function del(){
 
     <input type="button" value="수정">
     <input type="button" value="삭제">
-    <input type="button" value="목록보기" onClick="location.href='/board/list'">
+    <input type="button" value="목록보기" onClick="location.href='/notice/list.do'">
   </form>
 </div>
 
