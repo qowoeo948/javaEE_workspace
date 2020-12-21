@@ -1,18 +1,20 @@
-package com.model2.notice.domain;
+package com.model2.domain;
 
-public class Notice {
-	private int notice_id;
+public class Board {
+	private int board_id;
 	private String title;
 	private String writer;
 	private String content;
 	private String regdate;
 	private int hit;
+	private int cnt;
 	
-	public int getNotice_id() {
-		return notice_id;
+	
+	public int getBoard_id() {
+		return board_id;
 	}
-	public void setNotice_id(int notice_id) {
-		this.notice_id = notice_id;
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
 	}
 	public String getTitle() {
 		return title;
@@ -43,6 +45,12 @@ public class Notice {
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 	

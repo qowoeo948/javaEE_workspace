@@ -1,4 +1,4 @@
-<%@page import="com.model2.notice.domain.Notice"%>
+<%@page import="com.model2.domain.Notice"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%
 		Notice notice = (Notice)request.getAttribute("notice");
@@ -92,7 +92,6 @@ function del(){
     <input type="text" name="title" value=<%=notice.getTitle() %>>
     <input type="text" name="writer" value=<%=notice.getWriter() %>>
     <textarea name="content" style="height:200px"><%=notice.getContent() %></textarea>
-    <input type="file" name="photo"><p>
 
     <input type="button" value="수정">
     <input type="button" value="삭제">

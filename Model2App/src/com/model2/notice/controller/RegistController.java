@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model2.controller.Controller;
-import com.model2.notice.domain.Notice;
+import com.model2.domain.Notice;
 import com.model2.notice.model.NoticeDAO;
 
 public class RegistController implements Controller{

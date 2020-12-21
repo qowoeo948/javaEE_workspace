@@ -4,7 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.model2.notice.domain.Notice" alias="Notice"/>
+		<typeAlias type="com.model2.domain.Notice" alias="Notice"/>
+		<typeAlias type="com.model2.domain.Board" alias="Board"/>
+		<typeAlias type="com.model2.domain.Comment" alias="Comment"/>
 	</typeAliases>
 
   <environments default="development">
@@ -17,5 +19,7 @@
   </environments>
   <mappers>
     <mapper resource="com/model2/mybatis/mappers/NoticeMapper.xml"/>
+    <mapper resource="com/model2/mybatis/mappers/BoardMapper.xml"/>
+    <mapper resource="com/model2/mybatis/mappers/CommentMapper.xml"/>
   </mappers>
 </configuration>
