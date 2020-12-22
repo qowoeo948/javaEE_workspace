@@ -6,10 +6,13 @@
 		"/notice/detail.do" :"com.model2.notice.controller.DetailController",
 		"/notice/edit.do" :"com.model2.notice.controller.EditController",
 		"/notice/delete.do" :"com.model2.notice.controller.DeleteController",
+		
 		"/board/list.do" :"com.model2.board.controller.ListController",
 		"/board/regist.do" :"com.model2.board.controller.RegistController",
 		"/board/detail.do" :"com.model2.board.controller.DetailController",
 		"/board/edit.do" :"com.model2.board.controller.EditController",
+		"/board/delete.do" :"com.model2.board.controller.DeleteController",
+		
 		"/comment/regist.do" :"com.model2.comment.controller.RegistController",
 		"/comment/list.do" :"com.model2.comment.controller.ListController"
 	},
@@ -21,10 +24,13 @@
 		"/view/notice/detail":"/notice/detail.jsp",
 		"/view/notice/edit":"/notice/list.do",
 		"/view/notice/delete":"/notice/list.do",
+		
 		"/view/board/list":"/board/list.jsp",
 		"/view/board/regist":"/board/list.do",
 		"/view/board/detail":"/board/detail.jsp",
 		"/view/board/edit":"/board/edit.jsp",
+		"/view/board/delete":"/board/list.do",
+		
 		"/view/comment/list":"/board/comment_list.jsp",
 		"/view/comment/regist":"/board/comment_regist.jsp"
 	}

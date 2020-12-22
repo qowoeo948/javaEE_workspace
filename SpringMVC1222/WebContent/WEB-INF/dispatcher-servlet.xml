@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 어떤 컨트롤러가 요청을 처리할지에 대한 정보를 작성하지 않아도 된다.
+	가능한 이유? 개발자가 컨트롤러에 대한 정보를 아무것도 작성하지 않으면, 
+	DefaultAnnotationHandlerMapping 객체가 적용됨..
+	 -->
+	 
+	 <!-- 지정한 url에 어떤 컨트롤러가 일하게 될지를 결정하는 매핑방식 -->
+	 <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	 	<property name="alwaysUseFullPath" value="true"></property>
+	 	<property name="mappings">
+	 		<props>
+	 			<prop key="/hello">testController</prop>
+	 			<prop key="/board/list">listController</prop>
+	 			<prop key="/board/regist">registController</prop>
+	 		</props>
+	 	</property>
+	 </bean>
+	 
+	 <bean id="testController" class="com.springmvc.test.controller.TestController"/>
+	 <bean id="listController" class="com.springmvc.board.controller.ListController"/>
+	 <bean id="registController" class="com.springmvc.board.controller.RegistController"/>
+	 
+	 
+	 <!-- 뷰 매핑 -->
+	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+	 	<property name="prefix" value="/"/>
+	 	<property name="suffix" value=".jsp"/>
+	 </bean>
+	 
+	 
+</beans>

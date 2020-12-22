@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 스윙 컴포넌트를 spring으로 제어해보기 -->
+	
+	<!-- 북쪽 영역 -->
+	<bean id="p_north" class="javax.swing.JPanel"/>
+	<!-- 자바 코드를 xml로 표현해야 한다. 생성자를 인수로 집어넣자 -->
+	<bean id="t_ip" class="javax.swing.JTextField">
+		<constructor-arg index="0" type="String" value="192.168.0.10" />
+		<constructor-arg index="1" type="int" value="20" />
+	</bean>
+	<bean id="bt" class="javax.swing.JButton">
+		<constructor-arg index="0" type="String" value="접속"/>
+	</bean>
+	
+	<!-- 센터영역 -->
+	<bean id="area" class="javax.swing.JTextArea"/>
+	<bean id="scroll" class="javax.swing.JScrollPane">
+		<constructor-arg index="0" ref="area"/>
+	</bean>
+	
+	<!-- 하단영역 -->
+	<bean id="t_input" class="javax.swing.JTextField">
+		<constructor-arg type="int" value="20"/>
+	</bean>
+	
+	<!-- ChatClient에게 컴포넌트들 주입!! -->
+	<bean id="chatClient" class="gui.ChatClient">
+      <property name="p_north" ref="p_north"/>   
+      <property name="t_ip" ref="t_ip"/>   
+      <property name="bt" ref="bt"/>   
+      <property name="area" ref="area"/>   
+      <property name="scroll" ref="scroll"/>   
+      <property name="t_input" ref="t_input"/>   
+   </bean>
+	
+	
+</beans>
