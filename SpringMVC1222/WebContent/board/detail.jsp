@@ -67,7 +67,7 @@ $(function(){
 //글등록 요청
 function 	edit(){
 	$("form").attr({
-		action:"/board/edit.do",
+		action:"/board/edit",
 		method:"post"
 	});		
 	$("form").submit();
@@ -75,7 +75,7 @@ function 	edit(){
 
 function 	del(){
 	$("form").attr({
-		action:"/board/delete.do",
+		action:"/board/delete",
 		method:"post"
 	});		
 	$("form").submit();
@@ -152,7 +152,7 @@ function registComment(){
     
     <input type="button" value="글수정">
     <input type="button" value="글삭제">
-    <input type="button" value="목록보기" onClick="location.href='/board/list.do'">
+    <input type="button" value="목록보기" onClick="location.href='/board/list'">
 	<div class="reply-box">
 		<input type="text" name="msg" placeholder="댓글 입력.." style="width:75%">
 		<input type="text" name="author" placeholder="작성자 입력.." style="width:15%">

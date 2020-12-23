@@ -52,7 +52,7 @@ tr:nth-child(even) {
     <%Board board=boardList.get(curPos++); %>
    <tr>
 	<td><%=num-- %></td>
-	<td><a href="/board/detail.do?board_id=<%=board.getBoard_id()%>"><%=board.getTitle() %></a>[<%= board.getCnt() %>]</td>
+	<td><a href="/board/detail?board_id=<%=board.getBoard_id()%>"><%=board.getTitle() %></a>[<%= board.getCnt() %>]</td>
 	<td><%=board.getWriter() %></td>
 	<td><%=board.getRegdate().substring(0,10) %></td>
 	<td><%=board.getHit() %></td>

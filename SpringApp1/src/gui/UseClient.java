@@ -14,5 +14,6 @@ public class UseClient {
 		
 		ChatClient chatClient = (ChatClient)context.getBean("chatClient");
 		chatClient.init();
+		
 	}
 }
